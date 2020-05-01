@@ -1,5 +1,9 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    ":assignAndReview(docwhat)",
+    ":automergeAll",
+    ":automergeBranchPush"
+  ],
+  "timezone": "America/New_York"
 }

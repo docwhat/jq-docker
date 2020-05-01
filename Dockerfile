@@ -1,4 +1,4 @@
-FROM alpine AS fetcher
+FROM alpine:3 AS fetcher
 RUN apk update && apk add curl ca-certificates
 RUN curl -sSfL -o /jq 'https://github.com/stedolan/jq/releases/latest/download/jq-linux64'
 RUN chmod +x /jq

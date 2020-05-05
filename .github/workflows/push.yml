@@ -7,8 +7,6 @@ on:
       - master
     tags:
       - "v[1-9]*"
-  schedule:
-    - cron: "23 9 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest

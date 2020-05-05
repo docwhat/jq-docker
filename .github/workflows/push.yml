@@ -1,6 +1,8 @@
 name: Publish Docker
 on:
   push:
+    paths:
+      - "Dockerfile"
     branches:
       - master
       - "v[0-9]+"

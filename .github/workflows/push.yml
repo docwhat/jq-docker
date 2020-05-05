@@ -1,5 +1,13 @@
 name: Publish Docker
-on: [push]
+on:
+  push:
+    branches:
+      - master
+      - "v[0-9]+"
+    tags:
+      - "v[0-9.]+"
+  schedule:
+    - cron: "23 9 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest

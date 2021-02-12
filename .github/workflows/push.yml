@@ -4,7 +4,7 @@ on:
     paths:
       - "Dockerfile"
     branches:
-      - master
+      - main
     tags:
       - "v[1-9]*"
 jobs:

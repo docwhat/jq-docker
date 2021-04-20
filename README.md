@@ -1,11 +1,16 @@
 ![](https://github.com/docwhat/jq-docker/workflows/Publish%20Docker/badge.svg)
 
+> `jq` in a docker image for easy use.
 
-# JQ docker image
+```sh
+docker run -i docwhat/jq <test.json '.a+.b'
+```
 
-This is a simple project to build a docker image regularly, keeping it in sync with the official `jq` tool.
+# jq docker image
 
-`jq` is the latest from the [official releases](https://github.com/stedolan/jq/releases).
+The latest release of `jq` from [stedolan/jq](https://github.com/stedolan/jq#readme).  The latest `jq` documentation is available at [stedolan.github.io/jq](https://stedolan.github.io/jq).
+
+The `docwhat/jq` docker image is regularly built using the latest from the [official releases](https://github.com/stedolan/jq/releases).
 
 I created this to make it easy to run the tool in docker driven CI systems.
 

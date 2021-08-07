@@ -1,0 +1,14 @@
+name: Auto-merge Dependabot PRs
+on:
+  schedule:
+    # Dependabot runs on Monday...this will merge on Tuesday morning.
+    - cron: "23 4 * * 3"
+jobs:
+  auto_merge:
+    name: Auto-merge Dependabot PRs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: akheron/dependabot-cron-action@d020867c009553e279f0200b621459444828a9b0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: "squash"

@@ -1,5 +1,4 @@
-![](https://github.com/docwhat/jq-docker/workflows/Publish%20Docker/badge.svg)
-[![Docker Repository on Quay](https://quay.io/repository/docwhat/jq/status "Docker Repository on Quay")](https://quay.io/repository/docwhat/jq)
+[![Build & Publish](https://github.com/docwhat/jq-docker/actions/workflows/push.yaml/badge.svg)](https://github.com/docwhat/jq-docker/actions/workflows/push.yaml)
 
 > `jq` in a docker image for easy use.
 

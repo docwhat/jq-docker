@@ -1,4 +1,4 @@
-FROM alpine:20210212 AS fetcher
+FROM alpine:20210804 AS fetcher
 ENV JQ_VERSION 1.5
 # hadolint ignore=DL3018
 RUN apk add --no-cache curl ca-certificates

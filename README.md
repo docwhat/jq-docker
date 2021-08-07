@@ -22,7 +22,7 @@ The image is available from several repositories:
 # Quay
 docker pull quay.io/docwhat/jq
 # Github Container Registry
-docker pull ghcr.io/docwhat/jq-docker/jq
+docker pull ghcr.io/docwhat/jq-docker
 # Docker Hub
 docker pull docker.io/docwhat/jq
 ```

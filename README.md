@@ -17,16 +17,15 @@ I created this to make it easy to run the tool in docker driven CI systems.
 
 ## Usage
 
-The image is available from Quay:
+The image is available from several repositories:
 
 ```sh
+# Quay
 docker pull quay.io/docwhat/jq
-```
-
-The image is also available from Docker Hub:
-
-```sh
-docker pull docwhat/jq
+# Github Container Registry
+docker pull ghcr.io/docwhat/jq-docker/jq
+# Docker Hub
+docker pull docker.io/docwhat/jq
 ```
 
 To use it on the command-line you can create an alias:

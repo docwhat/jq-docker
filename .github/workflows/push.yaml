@@ -1,8 +1,9 @@
-name: Publish Docker
+name: Build & Publish
 on:
   push:
     paths:
       - "Dockerfile"
+      - ".github/workflows/push.yaml"
     branches:
       - main
     tags:

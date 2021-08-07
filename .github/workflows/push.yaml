@@ -8,36 +8,57 @@ on:
       - main
     tags:
       - "v[1-9]*"
+  pull_request:
+    paths:
+      - "Dockerfile"
+      - ".github/workflows/push.yaml"
+    
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
     steps:
-      - uses: actions/checkout@master
-      - name: Publish to GitHub Packages
-        uses: elgohr/Publish-Docker-Github-Action@master
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        if: github.event_name != 'pull_request'
         with:
-          name: docker.pkg.github.com/docwhat/jq-docker/jq
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          tag_semver: true
-      - name: Publish to Docker Hub
-        uses: elgohr/Publish-Docker-Github-Action@master
-        with:
-          name: docker.io/docwhat/jq
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          tag_semver: true
-      - name: Publish to Quay
-        uses: elgohr/Publish-Docker-Github-Action@master
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        if: github.event_name != 'pull_request'
         with:
-          name: quay.io/docwhat/jq
+          registry: quay.io
           username: ${{ secrets.QUAY_USERNAME }}
-          password: ${{ secrets.QUAY_PASSWORD }}
-          tag_semver: true
-      - name: pushover-actions
-        uses: clivern/pushover-actions@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
-          PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
+          password: ${{ secrets.QUAY_PASSWORD }}      
+      
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        if: github.event_name != 'pull_request'
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: |
+            docwhat/jq
+            quay.io/docwhat/jq
+            ghcr.io/${{ github.repository }}
+      
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
